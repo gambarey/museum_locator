@@ -1,3 +1,11 @@
 
-
-<%= @result %>
+<% @museums_by_postcode.each do |postcode, museums| %>
+  <%= "Postcode: #{postcode}" %>
+  <br>
+  <% museums.each do |museum| %>
+    <%= "Name: #{museum}" %>
+  <% end %>
+  <br>
+  <br>
+<% end %>
+<%= link_to "Enter new coordinates", museums_new_path %>
