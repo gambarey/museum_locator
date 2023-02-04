@@ -9,15 +9,7 @@ class MuseumsController < ApplicationController
   def create
     lat = params[:lat]
     lng = params[:lng]
-    # ... the rest of your code for the index action
-    lat = params[:lat]
-    lng = params[:lng]
 
-    # Make a request to the Mapbox API using the lat and lng parameters
-    # response = HTTParty.get("https://api.mapbox.com/geocoding/v5/mapbox.places/museums.json?lat=#{lat}&lng=#{lng}&access_token=pk.eyJ1IjoiZ2FtYmFyZXkiLCJhIjoiY2xiNTNtdmF2MDFzYjN2cGc1YWUxYWpheSJ9.3-9J0sjLcCTBT6jdZ5NIXg")
-
-    #   # Send a request to the Mapbox API to retrieve the museums around the given GPS location
-    #url = "https://api.mapbox.com/geocoding/v5/mapbox.places/museums.json?lat=#{lat}&lng=#{lng}&access_token=pk.eyJ1IjoiZ2FtYmFyZXkiLCJhIjoiY2xiNTNtdmF2MDFzYjN2cGc1YWUxYWpheSJ9.3-9J0sjLcCTBT6jdZ5NIXg"
 
     url = "https://api.mapbox.com/geocoding/v5/mapbox.places/museum.json?proximity=#{lat}%2C#{lng}&types=poi&access_token=pk.eyJ1IjoiZ2FtYmFyZXkiLCJhIjoiY2xiNTNtdmF2MDFzYjN2cGc1YWUxYWpheSJ9.3-9J0sjLcCTBT6jdZ5NIXg"
     response = URI.open(url).read
@@ -40,7 +32,6 @@ class MuseumsController < ApplicationController
 
     #   # Send a request to the Mapbox API to retrieve the museums around the given GPS location
     #url = "https://api.mapbox.com/geocoding/v5/mapbox.places/museums.json?lat=#{lat}&lng=#{lng}&access_token=pk.eyJ1IjoiZ2FtYmFyZXkiLCJhIjoiY2xiNTNtdmF2MDFzYjN2cGc1YWUxYWpheSJ9.3-9J0sjLcCTBT6jdZ5NIXg"
-
     url = "https://api.mapbox.com/geocoding/v5/mapbox.places/museum.json?proximity=#{lat}%2C#{lng}&types=poi&access_token=pk.eyJ1IjoiZ2FtYmFyZXkiLCJhIjoiY2xiNTNtdmF2MDFzYjN2cGc1YWUxYWpheSJ9.3-9J0sjLcCTBT6jdZ5NIXg"
     response = URI.open(url).read
     @data = JSON.parse(response)
@@ -51,7 +42,6 @@ class MuseumsController < ApplicationController
       @museums_by_postcode[museum["context"][0]["id"].split(".").second] = [museum["text"]]
     end
   end
-
 
   # MAPBOX_API_URL = 'https://api.mapbox.com/search/v1/suggest/%2Fmuseums'
 
